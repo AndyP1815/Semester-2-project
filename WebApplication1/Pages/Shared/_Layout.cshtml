@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="/WebImages/Favicon.ico">
+    <title>@ViewData["Title"] - WebApplication1</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/WebApplication1.styles.css" asp-append-version="true" />
+
+</head>
+<body>
+
+<header>
+    <div class="topnav">
+        <div class="logo">
+            <a href="/index"><img src="/WebImages/Logo.png"></a>
+        </div>
+        <div class="wrapper">
+            <form action="/Posters" method="get">
+                <div class="SearchBar">
+                <input type="text" placeholder="Search.." id="searchphrase" name="searchphrase" >
+                </div>
+            </form>
+        </div>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a href="logout">Logout </a>
+                <a href="profile">Profile </a>
+                <a href="Cart">Cart</a>
+            }
+            else
+            {
+
+                <a href="login">Login </a>
+            }
+    </div>
+    <div class="navbar" id ="navbar">
+        <ul class="navbar">
+            <li><a href="Posters">Posters</a></li>
+            <li><a href="Books">Books</a></li>
+            <li><a href="Figures">3D Figures</a></li>
+            <li><a href="Clothing">T-Shirts</a></li>
+        </ul>
+    </div>
+</header>   
+
+<div>
+    <main role="main" class="pb-3">
+            @RenderBody()
+    </main>
+</div>
+
+
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

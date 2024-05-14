@@ -1,0 +1,55 @@
+﻿@page
+@using classes;
+@model UpdateFigureModel
+@{
+}
+<form method="post" asp-route-id="@Model.FiguresDTO.Id">
+    <div>
+        @foreach (var category in Model.CatogoriesOptions)
+        {
+            var categoryEnum = Enum.Parse<Catogories>(category.Value);
+            <label>
+                <input type="checkbox" name="FiguresDTO.Catogories" value="@category.Value"
+                @(Model.FiguresDTO.Catogories.Contains(categoryEnum) ? "checked='checked'" : "") />
+                @category.Text
+            </label>
+            <br />
+        }
+    </div>
+    <label asp-for="FiguresDTO.ProductName"><b>ProductName</b></label>
+    <span asp-validation-for="FiguresDTO.ProductName"></span>
+    <input asp-for="FiguresDTO.ProductName" placeholder="Enter a Product name" />
+
+    <label asp-for="FiguresDTO.Description"><b>ProductDescription</b></label>
+    <span asp-validation-for="FiguresDTO.Description"></span>
+    <input asp-for="FiguresDTO.Description" placeholder="Enter a Description" />
+
+    <label asp-for="FiguresDTO.Price"><b>ProductPrice</b></label>
+    <span asp-validation-for="FiguresDTO.Price"></span>
+    <input asp-for="FiguresDTO.Price" placeholder="Enter a Price" />
+
+    <label asp-for="FiguresDTO.Url"><b>ProductUrl</b></label>
+    <span asp-validation-for="FiguresDTO.Url"></span>
+    <input asp-for="FiguresDTO.Url" placeholder="Enter a Url" />
+
+    <label asp-for="FiguresDTO.Dimensions"><b>ProductDimensions</b></label>
+    <span asp-validation-for="FiguresDTO.Dimensions"></span>
+    <input asp-for="FiguresDTO.Dimensions" placeholder="Enter the dimension" />
+
+    <input type="submit" value="Submit" />
+
+</form>
+@if (!ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        <h4>@ViewData["ErrorTitle"]</h4>
+        <hr />
+        <p>@ViewData["ErrorMessage"]</p>
+        <ul>
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <li>@error.ErrorMessage</li>
+            }
+        </ul>
+    </div>
+}

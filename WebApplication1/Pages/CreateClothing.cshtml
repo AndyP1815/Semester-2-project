@@ -1,0 +1,48 @@
+﻿@page
+@model CreateClothingModel
+@{
+}
+<form method="post">
+
+<div>
+    @foreach (var Catogories in Model.CatogoriesOptions)
+    {
+        <label>
+            <input type="checkbox" name="clothingDTO.Catogories" value="@Catogories.Value" />
+            @Catogories.Text
+        </label>
+        <br />
+    }
+</div>
+<label asp-for="clothingDTO.ProductName"><b>ProductName</b></label>
+<span asp-validation-for="clothingDTO.ProductName"></span>
+<input asp-for="clothingDTO.ProductName" placeholder="Enter a Product name" />
+
+<label asp-for="clothingDTO.Description"><b>ProductDescription</b></label>
+<span asp-validation-for="clothingDTO.Description"></span>
+<input asp-for="clothingDTO.Description" placeholder="Enter a Description" />
+
+<label asp-for="clothingDTO.Price"><b>ProductPrice</b></label>
+<span asp-validation-for="clothingDTO.Price"></span>
+<input asp-for="clothingDTO.Price" placeholder="Enter a Price" />
+
+<label asp-for="clothingDTO.Url"><b>ProductUrl</b></label>
+<span asp-validation-for="clothingDTO.Url"></span>
+<input asp-for="clothingDTO.Url" placeholder="Enter a Url" />
+    <input type="submit" value="Submit" />
+</form>
+
+@if (!ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        <h4>@ViewData["ErrorTitle"]</h4>
+        <hr />
+        <p>@ViewData["ErrorMessage"]</p>
+        <ul>
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <li>@error.ErrorMessage</li>
+            }
+        </ul>
+    </div>
+}

@@ -1,0 +1,55 @@
+﻿@page
+@model CreatePosterModel
+@{
+}
+<form method="post">
+<div>
+    @foreach (var Catogories in Model.CatogoriesOptions)
+    {
+        <label>
+            <input type="checkbox" name="PosterDTO.Catogories" value="@Catogories.Value" />
+            @Catogories.Text
+        </label>
+        <br />
+    }
+</div>
+<label asp-for="PosterDTO.ProductName"><b>ProductName</b></label>
+<span asp-validation-for="PosterDTO.ProductName"></span>
+<input asp-for="PosterDTO.ProductName" placeholder="Enter a Product name" />
+
+<label asp-for="PosterDTO.Description"><b>ProductDescription</b></label>
+<span asp-validation-for="PosterDTO.Description"></span>
+<input asp-for="PosterDTO.Description" placeholder="Enter a Description" />
+
+<label asp-for="PosterDTO.Price"><b>ProductPrice</b></label>
+<span asp-validation-for="PosterDTO.Price"></span>
+<input asp-for="PosterDTO.Price" placeholder="Enter a Price" />
+
+<label asp-for="PosterDTO.Url"><b>ProductUrl</b></label>
+<span asp-validation-for="PosterDTO.Url"></span>
+<input asp-for="PosterDTO.Url" placeholder="Enter a Url" />
+
+<div>
+    <label>Direction: </label>
+    <div>
+        <label><input type="radio" name="PosterDTO.Direction" value="H">Horizontal</label>
+        <label><input type="radio" name="PosterDTO.Direction" value="V">Vertical</label>
+    </div>
+</div>
+
+    <input type="submit" value="Submit" />
+</form>
+@if (!ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        <h4>@ViewData["ErrorTitle"]</h4>
+        <hr />
+        <p>@ViewData["ErrorMessage"]</p>
+        <ul>
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <li>@error.ErrorMessage</li>
+            }
+        </ul>
+    </div>
+}

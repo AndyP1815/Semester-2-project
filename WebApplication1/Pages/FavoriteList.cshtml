@@ -1,0 +1,123 @@
+﻿@page
+@model FavoriteListModel
+@{
+
+}
+@using classes
+<link rel="stylesheet" type="text/css" href="~/css/Profile.css" />
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible"
+          content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width,
+                   initial-scale=1.0">
+    <style>
+   
+        p {
+            font-size: 17px;
+            align-items: center;
+        }
+
+        .box a {
+            display: inline-block;
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 3px;
+        }
+
+        .modal {
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            transition: all 0.4s;
+            visibility: hidden;
+            opacity: 0;
+        }
+
+        .content {
+            position: absolute;
+            background: white;
+            width: 400px; 
+            height: 300px; 
+            padding: 1em 2em;
+            border-radius: 4px;
+        }
+
+        .modal:target {
+            visibility: visible;
+            opacity: 1;
+        }
+
+       
+    </style>
+</head>
+
+<body>
+
+    <div class="grid-Profile">
+        <div class="itembigmid">
+            big
+        </div>
+        <div class="itemmain">
+           main
+        </div>
+        <div class="itemleft">
+            <ul class="navbar-list">
+                <li><a  href="profile">OverView</a></li>
+                <li><a href="/OrderPage">Orders</a></li>
+                <li><a class="active" href="/FavoriteList">FavoriteLists</a></li>
+                @if (Model.IsSeller == true)
+                {
+                    <li><a href="SellerProducts">Products</a></li>
+                }
+            </ul>
+        </div>
+        <div class="itemright">
+            <p1>@Model.UserDTO.Username</p1> </br>
+            @foreach (FavoriteListDTO favoriteList in Model.favoriteLists)
+            {
+                <a href="/FavoriteListSingle?id=@favoriteList.ID">@favoriteList.Name</a>
+            }
+            <div class="box">
+                <a href="#popup-box">
+                   Make a new list
+                </a>
+            </div>
+            <div id="popup-box" class="modal">
+                <div class="content">
+                    <h1>
+                        <form method="post">
+                            <label asp-for="favoriteListDTO.Name"><b>Name</b></label>
+                            <span asp-validation-for="favoriteListDTO.Name"></span>
+                            <input asp-for="favoriteListDTO.Name" placeholder="Enter a name" />
+                            <input type="submit" value="Submit" />
+                        </form>
+                    </h1>
+                    <a href="#"
+                       class="box-close">
+                        ×
+                    </a>
+                </div>
+            </div>
+            <script>
+                // Close the popup box after form submission
+                document.getElementById("favoriteListForm").addEventListener("submit", function (event) {
+                    event.preventDefault(); // Prevent the default form submission
+                    location.href = "#"; // Close the popup by scrolling to the top of the page
+                });
+            </script>
+        </div>
+
+
+    </div>
+   
+</body>
+</html>
+
+

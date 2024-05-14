@@ -1,0 +1,41 @@
+﻿@page
+@model SellerProductsModel
+
+<head>
+    <link rel="stylesheet" type="text/css" href="~/css/Profile.css" />
+</head>
+
+<body>
+    <div class="grid-Profile">
+        <div class="itembigmid">
+            big
+        </div>
+        <div class="itemmain">
+            main
+        </div>
+        <div class="itemleft">
+            <ul class="navbar-list">
+                <li><a  href="profile">OverView</a></li>
+                <li><a href="/OrderPage">Orders</a></li>
+                <li><a href="/FavoriteList">FavoriteLists</a></li>
+                <li><a class="active"  href="SellerProducts">Products</a></li>
+                
+            </ul>
+        </div>
+        <div class="itemright">
+            <p>@Model.UserDTO.Username</p> <br />
+
+            @foreach (ProductDTO productDTO in Model.Products)
+            {
+                <a href="UpdateProduct?id=@productDTO.Id">@productDTO.ProductName</a>
+                <form asp-page-handler="Delete" asp-route-id="@productDTO.Id" method="post"
+                      onsubmit="return confirm('Are you sure you want to delete this product?');">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+                <br />
+            }
+
+            <a href="CreateProducts">Create product</a>
+        </div>
+    </div>
+</body>

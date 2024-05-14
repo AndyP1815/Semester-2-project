@@ -1,0 +1,40 @@
+﻿@page
+@model OrderPageModel
+@{
+}
+<head>
+	<link rel="stylesheet" type="text/css" href="~/css/Profile.css" />
+</head>
+<body>
+
+	<div class="grid-Profile">
+		<div class="itembigmid">
+			big
+		</div>
+		<div class="itemmain">
+			main
+		</div>
+		<div class="itemleft">
+			<ul class="navbar-list">
+				<li><a  href="profile">OverView</a></li>
+				<li><a class="active" href="/OrderPage">Orders</a></li>
+				<li><a href="/FavoriteList">FavoriteLists</a></li>
+				@if (Model.IsSeller == true)
+				{
+					<li><a href="SellerProducts">Products</a></li>
+				}
+			</ul>
+		</div>
+		<div class="itemright">
+			<p1>@Model.UserDTO.Username</p1></br>
+			@foreach(OrderDTO o in Model.OrderDTOs)
+			{
+				<a href="/OrderSinglePage?id=@o.orderID">@o.orderID.ToString();</a>
+			}
+
+		</div>
+
+
+	</div>
+
+</body>

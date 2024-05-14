@@ -1,0 +1,58 @@
+﻿@page
+@model CreateEbookModel
+@{
+
+}
+<form asp-page-handler="Ebook" method="post">
+    <div>
+        @foreach (var Catogories in Model.CatogoriesOptions)
+        {
+            <label>
+                <input type="checkbox" name="EBooksDTO.Catogories" value="@Catogories.Value" />
+                @Catogories.Text
+            </label>
+            <br />
+        }
+    </div>
+    <label asp-for="EBooksDTO.ProductName"><b>ProductName</b></label>
+    <span asp-validation-for="EBooksDTO.ProductName"></span>
+    <input asp-for="EBooksDTO.ProductName" placeholder="Enter a Product name" />
+
+    <label asp-for="EBooksDTO.Description"><b>ProductDescription</b></label>
+    <span asp-validation-for="EBooksDTO.Description"></span>
+    <input asp-for="EBooksDTO.Description" placeholder="Enter a Description" />
+
+    <label asp-for="EBooksDTO.Price"><b>ProductPrice</b></label>
+    <span asp-validation-for="EBooksDTO.Price"></span>
+    <input asp-for="EBooksDTO.Price" placeholder="Enter a Price" />
+
+    <label asp-for="EBooksDTO.Url"><b>ProductUrl</b></label>
+    <span asp-validation-for="EBooksDTO.Url"></span>
+    <input asp-for="EBooksDTO.Url" placeholder="Enter a Url" />
+
+    <label asp-for="EBooksDTO.Pages"><b>ProductPages</b></label>
+    <span asp-validation-for="EBooksDTO.Pages"></span>
+    <input asp-for="EBooksDTO.Pages" placeholder="Enter a Page" />
+
+
+    <label asp-for="EBooksDTO.Downloadlink"><b>Downloadlink</b></label>
+    <span asp-validation-for="EBooksDTO.Downloadlink"></span>
+    <input asp-for="EBooksDTO.Downloadlink" placeholder="Enter the link" />
+
+    <input type="submit" value="Submit" />
+</form>
+    </div>
+@if (!ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        <h4>@ViewData["ErrorTitle"]</h4>
+        <hr />
+        <p>@ViewData["ErrorMessage"]</p>
+        <ul>
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <li>@error.ErrorMessage</li>
+            }
+        </ul>
+    </div>
+}

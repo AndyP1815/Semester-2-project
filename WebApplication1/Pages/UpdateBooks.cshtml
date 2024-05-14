@@ -1,0 +1,119 @@
+﻿@page
+@using classes;
+@model UpdateBooksModel
+@{
+}
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+
+ @*   @if (Model.Ebook == false || Model.EBooksDTO.Ebook == true)
+    {*@
+
+
+        <h1> Book </h1>
+        <form asp-page-handler="Book" asp-route-id="@Model.BooksDTO.Id" method="post">
+            <div>
+                @foreach (var category in Model.CatogoriesOptions)
+                {
+                    var categoryEnum = Enum.Parse<Catogories>(category.Value);
+                    <label>
+                        <input type="checkbox" name="BooksDTO.Catogories" value="@category.Value"
+                        @(Model.BooksDTO.Catogories.Contains(categoryEnum) ? "checked='checked'" : "") />
+                        @category.Text
+                    </label>
+                    <br />
+                }
+            </div>
+
+            <label asp-for="BooksDTO.ProductName"><b>ProductName</b></label>
+            <span asp-validation-for="BooksDTO.ProductName"></span>
+            <input asp-for="BooksDTO.ProductName" placeholder="Enter a Product name" />
+
+            <label asp-for="BooksDTO.Description"><b>ProductDescription</b></label>
+            <span asp-validation-for="BooksDTO.Description"></span>
+            <input asp-for="BooksDTO.Description" placeholder="Enter a Description" />
+
+            <label asp-for="BooksDTO.Price"><b>ProductPrice</b></label>
+            <span asp-validation-for="BooksDTO.Price"></span>
+            <input asp-for="BooksDTO.Price" placeholder="Enter a Price" />
+
+            <label asp-for="BooksDTO.Pages"><b>ProductPages</b></label>
+            <span asp-validation-for="BooksDTO.Pages"></span>
+            <input asp-for="BooksDTO.Pages" placeholder="Enter a Page" />
+
+
+            <label asp-for="BooksDTO.Url"><b>ProductUrl</b></label>
+            <span asp-validation-for="BooksDTO.Url"></span>
+            <input asp-for="BooksDTO.Url" placeholder="Enter a Url" />
+
+        
+            <input type="submit" value="Submit" />
+        </form>
+    @if (!ModelState.IsValid)
+    {
+        <div class="alert alert-danger">
+            <h4>@ViewData["ErrorTitle"]</h4>
+            <hr />
+            <p>@ViewData["ErrorMessage"]</p>
+            <ul>
+                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    <li>@error.ErrorMessage</li>
+                }
+            </ul>
+        </div>
+    }
+ @*  }*@
+
+   @* @if (Model.BooksDTO.Ebook || Model.Ebook)
+    {
+        <h1>  Ebook </h1>
+
+        <form asp-page-handler="Ebook" asp-route-id="@Model.EBooksDTO.Id" method="post">
+            <div>
+                @foreach (var category in Model.CatogoriesOptions)
+                {
+                    var categoryEnum = Enum.Parse<Catogories>(category.Value);
+                    <label>
+                        <input type="checkbox" name="EBookDTO.Catogories" value="@category.Value"
+                        @(Model.EBooksDTO.Catogories.Contains(categoryEnum) ? "checked='checked'" : "") />
+                        @category.Text
+                    </label>
+                    <br />
+                }
+            </div>
+            <label asp-for="EBooksDTO.ProductName"><b>ProductName</b></label>
+            <span asp-validation-for="EBooksDTO.ProductName"></span>
+            <input asp-for="EBooksDTO.ProductName" placeholder="Enter a Product name" />
+
+            <label asp-for="EBooksDTO.Description"><b>ProductDescription</b></label>
+            <span asp-validation-for="EBooksDTO.Description"></span>
+            <input asp-for="EBooksDTO.Description" placeholder="Enter a Description" />
+
+            <label asp-for="EBooksDTO.Price"><b>ProductPrice</b></label>
+            <span asp-validation-for="EBooksDTO.Price"></span>
+            <input asp-for="EBooksDTO.Price" placeholder="Enter a Price" />
+
+            <label asp-for="EBooksDTO.Pages"><b>ProductPages</b></label>
+            <span asp-validation-for="EBooksDTO.Pages"></span>
+            <input asp-for="EBooksDTO.Pages" placeholder="Enter a Page" />
+
+
+            <label asp-for="EBooksDTO.Url"><b>ProductUrl</b></label>
+            <span asp-validation-for="EBooksDTO.Url"></span>
+            <input asp-for="EBooksDTO.Url" placeholder="Enter a Url" />
+
+
+
+            <label asp-for="DownloadLink"><b>Downloadlink</b></label>
+            <span asp-validation-for="DownloadLink"></span>
+            <input asp-for="DownloadLink" placeholder="Enter the link" />
+
+            <input type="submit" value="Submit" />
+        </form>
+        }*@
+</body>
+</html>

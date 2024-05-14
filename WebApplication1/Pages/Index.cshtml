@@ -1,0 +1,45 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<img src="Images/posters.png" class="Img-Size-Full">
+<div class="grid-container">
+    <div class="itemleft">
+            <div class="card">
+            <a href="/Product?id=@Model.productDTOs[1].Id"><img class="card__image" src="@Model.productDTOs[1].Url"></a>
+            </div>
+            <div class="card">
+            <a href="/Product?id=@Model.productDTOs[2].Id"><img class="card__image" src="@Model.productDTOs[2].Url"></a>
+            </div>
+        </div>    
+
+    <div class="itemright">
+        <div class="img-Size-1">
+            <div class="card">
+                <a href="/Product?id=@Model.productDTOs[3].Id"><img class="card__image" src="@Model.productDTOs[3].Url"></a>
+            </div>
+            <div class="card">
+                <a href="/Product?id=@Model.productDTOs[4].Id"><img class="card__image" src="@Model.productDTOs[4].Url"></a>
+            </div>
+        </div>     
+    </div>
+
+   <div class="itemmain">
+            <div class="card">
+            <a href="/Product?id=@Model.productDTOs[5].Id"><img class="card__image" src="@Model.productDTOs[5].Url"></a>
+            </div>
+            <div class="card">
+            <a href="/Product?id=@Model.productDTOs[6].Id"><img class="card__image" src="@Model.productDTOs[6].Url"></a>
+            </div> 
+    </div>
+
+  <div class="itemmid">
+            <div class="card">
+            <a href="/Product?id=@Model.productDTOs[7].Id"><img class="card__image" src="@Model.productDTOs[7].Url"></a>
+            </div>
+            <div class="card">
+            <a href="/Product?id=@Model.productDTOs[0].Id"><img class="card__image" src="@Model.productDTOs[0].Url"></a>
+            </div>
+        </div>    

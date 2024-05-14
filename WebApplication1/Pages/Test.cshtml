@@ -1,0 +1,13 @@
+﻿@page
+@model TestModel
+@{
+	ViewData["Title"] = "Test page";
+}
+
+<h1>Hello this is a test page to check information </h1>
+
+@foreach (UserDTO user in Model.UsersList)
+{
+	<p>@user.Username + @user.Password + @user.ID</p>
+
+}

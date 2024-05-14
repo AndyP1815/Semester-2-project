@@ -1,0 +1,58 @@
+﻿@page
+@model ClothingModel
+@{
+
+}
+
+<div class="grid-container2">
+	<div class="itemleft">
+		@foreach (ProductDTO productDTO in Model.ProductDTOsList[0])
+		{
+			<div class="card">
+				<a href="/Product?id=@productDTO.Id"> <img class="card__image" src="@productDTO.Url"></a>
+
+			</div>
+		}
+	</div>
+	@if(Model.Count > 1)
+	{
+		<div class="itemmid">
+			@foreach (ProductDTO productDTO in Model.ProductDTOsList[1])
+			{
+				<div class="card">
+					<a href="/Product?id=@productDTO.Id"> <img class="card__image" src="@productDTO.Url"></a>
+				</div>
+			}
+		</div>
+		@if (Model.Count > 2)
+		{
+			<div class="itemright">
+				@foreach (ProductDTO productDTO in Model.ProductDTOsList[2])
+				{
+					<div class="card">
+						<a href="/Product?id=@productDTO.Id"> <img class="card__image" src="@productDTO.Url"></a>
+					</div>
+
+				}
+			</div>
+		}
+		else
+		{
+			<div class="itemright"></div>
+		}
+	}
+	else
+	{
+		<div class="itemmid"> </div>
+		<div class="itemright"></div>
+	}
+	
+
+
+	<div class="itemfilter">
+		<div class="vl">
+
+		</div>
+
+	</div>
+</div>

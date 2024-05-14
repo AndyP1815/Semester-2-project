@@ -1,0 +1,33 @@
+﻿@page
+@model loginModel
+@{
+	ViewData["Title"] = "Login page";
+
+}
+<form method="post">
+	<label asp-for="UserLogin.UserName"><b>Username</b></label>
+	<span asp-validation-for="UserLogin.UserName"></span>
+	<input asp-for="UserLogin.UserName" placeholder="Enter a Username" />
+
+	<label asp-for="UserLogin.Password"><b>Password</b></label>
+	<span asp-validation-for="UserLogin.Password"></span>
+	<input asp-for="UserLogin.Password" type="password" placeholder="enter a password" />
+
+	<input type="submit" value="Submit" />
+	<p>  <a href="/Register">Register</a>  </p>
+</form>
+
+@if (!ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        <h4>@ViewData["ErrorTitle"]</h4>
+        <hr />
+        <p>@ViewData["ErrorMessage"]</p>
+        <ul>
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <li>@error.ErrorMessage</li>
+            }
+        </ul>
+    </div>
+}

@@ -1,0 +1,22 @@
+﻿@page
+@model FavoriteListSingleModel
+@{
+}
+
+<form method="post" asp-route-id="@Model.FavoriteListDTO.ID">
+    <label asp-for="FavoriteListDTO.Name"><b>Name</b></label>
+    <span asp-validation-for="FavoriteListDTO.Name"></span>
+    <input asp-for="FavoriteListDTO.Name" placeholder="Enter a name" />
+    <input type="submit" value="Submit" />
+</form>
+@foreach (ProductDTO productDTO in Model.FavoriteListDTO.Product)
+{
+    <a href="/Product?id=@productDTO.Id"> @productDTO.ProductName</a>
+    <form asp-page-handler="Delete" asp-route-id="@Model.FavoriteListDTO.ID" method="post"
+          onsubmit="return confirm('Are you sure you want to delete this product?');">
+        <input type="hidden" name="ProductId" value="@productDTO.Id" />
+        <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+}
+
+

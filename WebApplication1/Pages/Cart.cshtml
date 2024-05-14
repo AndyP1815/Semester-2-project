@@ -1,0 +1,36 @@
+﻿@page
+@model CartModel
+@{
+
+}
+<link rel="stylesheet" type="text/css" href="~/css/Cart.css" />
+
+
+
+<form method="post" asp-page-handler="CheckOut">
+	<button type="submit" class="btn btn-primary">Checkout</button>
+</form>
+<p1> Total price is $@Model.TotalPrice</p1>
+
+
+@foreach(CartDTO cart_Item in Model.CartProduct)
+{
+	<div class="box">
+		<div class="card">
+			<div class="card__image">
+				<img src="@cart_Item.product.Url" alt="Image">
+			</div>
+		</div>
+		<div class="box-text">
+			<p1>@cart_Item.ExtraInfo</p1> <br>
+			<p2>Price: @cart_Item.product.CalculatePrice() </p2>
+			<form method="post" asp-route-id="@cart_Item.id" asp-page-handler="Delete">
+				<button type="submit" class="btn btn-primary">Delete</button>
+			</form>
+		</div>
+	</div>
+
+}
+
+
+

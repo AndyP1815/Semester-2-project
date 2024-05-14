@@ -1,0 +1,46 @@
+﻿@page
+@model ProfileModel
+
+<head>
+	<link rel="stylesheet" type="text/css" href="~/css/Profile.css" />
+</head>
+
+<body>
+	<div class="grid-Profile">
+		<div class="itembigmid">
+			big
+		</div>
+		<div class="itemmain">
+			main
+		</div>
+		<div class="itemleft">
+			<ul class="navbar-list">
+				<li><a class="active" href="profile">OverView</a></li>
+				<li><a href="/OrderPage">Orders</a></li>
+				<li><a href="/FavoriteList">FavoriteLists</a></li>
+				@if (Model.IsSeller == true)
+				{
+					<li><a href="SellerProducts">Products</a></li>
+				}
+			</ul>
+		</div>
+		<div class="itemright">
+			<p1>@Model.UserDTO.Username</p1>
+			<form method="post" asp-route-id="@Model.UserDTO.ID">
+				<label asp-for="UserDTO.Username"><b>Username</b></label>
+				<span asp-validation-for="UserDTO.Username"></span>
+				<input asp-for="UserDTO.Username" placeholder="Enter a Username" />
+				<label asp-for="UserDTO.Adress"><b>Address</b></label>
+				<span asp-validation-for="UserDTO.Adress"></span>
+				<input asp-for="UserDTO.Adress" placeholder="Enter your Address" />
+				<input type="submit" value="Submit" />
+				@if (Model.IsSeller == true)
+				{
+					<label asp-for="Description"><b>Description</b></label>
+					<span asp-validation-for="Description"></span>
+					<input asp-for="Description" placeholder="Enter a description" />
+				}
+			</form>
+		</div>
+	</div>
+</body>

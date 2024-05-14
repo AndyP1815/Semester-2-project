@@ -1,0 +1,47 @@
+﻿@page
+@model CreateBookModel
+@{
+}
+<!DOCTYPE html>
+<html>
+
+<body>
+
+        <form method="post">
+        <div>
+            @foreach (var Catogories in Model.CatogoriesOptions)
+            {
+                <label>
+                    <input type="checkbox" name="BooksDTO.Catogories" value="@Catogories.Value" />
+                    @Catogories.Text
+                </label>
+                <br />
+            }
+        </div>
+            <label asp-for="BooksDTO.ProductName"><b>ProductName</b></label>
+            <span asp-validation-for="BooksDTO.ProductName"></span>
+            <input asp-for="BooksDTO.ProductName" placeholder="Enter a Product name" />
+
+            <label asp-for="BooksDTO.Description"><b>ProductDescription</b></label>
+            <span asp-validation-for="BooksDTO.Description"></span>
+            <input asp-for="BooksDTO.Description" placeholder="Enter a Description" />
+
+            <label asp-for="BooksDTO.Price"><b>ProductPrice</b></label>
+            <span asp-validation-for="BooksDTO.Price"></span>
+            <input asp-for="BooksDTO.Price" placeholder="Enter a Price" />
+
+            <label asp-for="BooksDTO.Url"><b>ProductUrl</b></label>
+            <span asp-validation-for="BooksDTO.Url"></span>
+            <input asp-for="BooksDTO.Url" placeholder="Enter a Url" />
+
+            <label asp-for="BooksDTO.Pages"><b>ProductPages</b></label>
+            <span asp-validation-for="BooksDTO.Pages"></span>
+            <input asp-for="BooksDTO.Pages" placeholder="Enter a Page" />
+            <input type="submit" value="Submit" />
+        </form>
+
+
+ 
+
+</body>
+</html>
